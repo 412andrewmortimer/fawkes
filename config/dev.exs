@@ -37,7 +37,7 @@ config :fawkes, FawkesWeb.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/fawkes_web/views/.*(ex)$},
-      ~r{lib/fawkes_web/templates/.*(eex)$}
+      ~r{lib/fawkes_web/templates/.*(eex|pug)$}
     ]
   ]
 
