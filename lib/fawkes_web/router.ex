@@ -19,8 +19,8 @@ defmodule FawkesWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", FawkesWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", FawkesWeb do
+    pipe_through :api
+    resources("/users", UserController, except: [:new, :edit])
+  end
 end
