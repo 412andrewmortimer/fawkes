@@ -41,6 +41,7 @@ const WebPack = {
       ]
     }, {
       test: /\.vue$/,
+      exclude: /(node_modules)/,
       use: 'vue-loader'
     }, {
       test: /\.(png|jpg|gif|ttf|woff2|woff|ico|eot|svg|json|txt)$/,
@@ -63,7 +64,20 @@ const WebPack = {
       to: PATHS.STATIC
     } ])
   ],
-  devtool: 'inline-source-map'
+  externals: {
+    // global app config object
+    config: JSON.stringify({
+        apiUrl: 'http://localhost:4242'
+    })
+  },
+  devtool: 'inline-source-map',
+  resolve: {
+    extensions: ['.js', '.vue'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    },
+    extensions: ['*', '.js', '.vue', '.json']
+  }
 };
 
 module.exports = WebPack;
