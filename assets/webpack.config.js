@@ -1,9 +1,8 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const {
-  VueLoaderPlugin
-} = require('vue-loader');
+const { VueLoaderPlugin } = require('vue-loader');
+
 const PATHS = {
   ENTRY: path.resolve(__dirname, 'js/app.js'),
   SRC: path.resolve(__dirname),
@@ -18,8 +17,9 @@ const WebPack = {
     app: PATHS.ENTRY
   },
   output: {
-    filename: 'js/app.bundle.js',
-    path: PATHS.STATIC
+    filename: '[name].[hash:8].js',
+    sourceMapFilename: '[name].[hash:8].map',
+    chunkFilename: '[id].[hash:8].js'
   },
   module: {
     rules: [{
@@ -62,20 +62,16 @@ const WebPack = {
     new CopyWebpackPlugin([{
       from: PATHS.STATIC_ASSETS,
       to: PATHS.STATIC
-    } ])
+    }])
   ],
   externals: {
     // global app config object
     config: JSON.stringify({
-        apiUrl: 'http://localhost:4242'
+      apiUrl: 'http://localhost:4242'
     })
   },
   devtool: 'inline-source-map',
   resolve: {
-    extensions: ['.js', '.vue'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
     extensions: ['*', '.js', '.vue', '.json']
   }
 };
