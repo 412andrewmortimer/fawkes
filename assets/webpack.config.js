@@ -1,9 +1,7 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const {
-  VueLoaderPlugin
-} = require('vue-loader');
+
 const PATHS = {
   ENTRY: path.resolve(__dirname, 'js/app.js'),
   SRC: path.resolve(__dirname),
@@ -37,11 +35,22 @@ const WebPack = {
         MiniCssExtractPlugin.loader,
         'css-loader?sourceMap',
         'postcss-loader?sourceMap',
-        'sass-loader?sourceMap',
+        'sass-loader?sourceMap'
       ]
     }, {
       test: /\.vue$/,
-      use: 'vue-loader'
+      loader: 'vue-loader',
+      options: {
+        loaders: {
+          css: ['vue-style-loader', {
+            loader: 'css-loader',
+          }],
+          js: [
+            'babel-loader',
+          ],
+        },
+        cacheBusting: true,
+      },
     }, {
       test: /\.(png|jpg|gif|ttf|woff2|woff|ico|eot|svg|json|txt)$/,
       use: [{
@@ -57,11 +66,10 @@ const WebPack = {
       filename: "css/[name].css",
       chunkFilename: "css[id].css"
     }),
-    new VueLoaderPlugin(),
     new CopyWebpackPlugin([{
       from: PATHS.STATIC_ASSETS,
       to: PATHS.STATIC
-    } ])
+    }])
   ],
   devtool: 'inline-source-map'
 };

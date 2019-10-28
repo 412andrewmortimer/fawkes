@@ -34,7 +34,7 @@ config :fawkes, FawkesWeb.Endpoint,
 config :fawkes, FawkesWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|vue|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/fawkes_web/views/.*(ex)$},
       ~r{lib/fawkes_web/templates/.*(eex|pug)$}

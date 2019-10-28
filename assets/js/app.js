@@ -1,18 +1,14 @@
 require('../css/app.scss');
-
 // import socket from "./socket"
-import axios from 'axios';
-import 'phoenix_html';
-import Vue from 'vue/dist/vue.js';
 import 'bootstrap';
+import 'phoenix_html';
 
-const app = new Vue({
-  el: '#app',
-  data: {
-    urls: {
-      login: null,
-      register: null
-    },
-    error: false
-  }
-});
+import Vue from 'vue/dist/vue.js';
+import App from './App.vue';
+
+
+Vue.config.productionTip = false
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
