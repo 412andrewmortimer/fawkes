@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :fawkes, FawkesWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: {:system, "PORT"}],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -52,7 +52,7 @@ config :phoenix, :stacktrace_depth, 20
 config :fawkes, Fawkes.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "",
+  password: "postgres",
   database: "fawkes_dev",
-  hostname: "db",
+  hostname: "localhost",
   pool_size: 10
