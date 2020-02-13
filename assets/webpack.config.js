@@ -1,6 +1,10 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+<<<<<<< HEAD
+=======
+const { VueLoaderPlugin } = require('vue-loader');
+>>>>>>> 335e7d7... Adds karma, jasmine, and sample unit test for Vue component
 
 const PATHS = {
   ENTRY: path.resolve(__dirname, 'js/app.js'),
@@ -16,8 +20,9 @@ const WebPack = {
     app: PATHS.ENTRY
   },
   output: {
-    filename: 'js/app.bundle.js',
-    path: PATHS.STATIC
+    filename: '[name].[hash:8].js',
+    sourceMapFilename: '[name].[hash:8].map',
+    chunkFilename: '[id].[hash:8].js'
   },
   module: {
     rules: [{
@@ -76,15 +81,11 @@ const WebPack = {
   externals: {
     // global app config object
     config: JSON.stringify({
-        apiUrl: 'http://localhost:4242'
+      apiUrl: 'http://localhost:4242'
     })
   },
   devtool: 'inline-source-map',
   resolve: {
-    extensions: ['.js', '.vue'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
     extensions: ['*', '.js', '.vue', '.json']
   }
 };
