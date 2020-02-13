@@ -1,14 +1,23 @@
 require('../css/app.scss');
-// import socket from "./socket"
-import 'bootstrap';
+
 import 'phoenix_html';
+import 'bootstrap';
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
 
-import Vue from 'vue/dist/vue.js';
-import App from './App.vue';
+import { store } from './_store';
+import { router } from './_helpers';
+import App from './app/App';
 
+Vue.use(VeeValidate);
 
-Vue.config.productionTip = false
+// setup fake backend
+import { configureFakeBackend } from './_helpers';
+configureFakeBackend();
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+    el: '#app',
+    router,
+    store,
+    render: h => h(App)
+});
